@@ -24,9 +24,9 @@ jobs:
         uses: actions/create-release@latest
         with:
           tag_name: ${{ github.ref }}
+          token: ${{ secrets.PAT }}
           release_name: Release ${{ github.ref }}
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
-          token: ${{ secrets.PAT }}
 
