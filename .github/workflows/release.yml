@@ -15,18 +15,19 @@ jobs:
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
           reverse: false
+          
       - name: Hello world action step
         uses: arshdeepG/github-action@v1.0
         with:
           commits: ${{ steps.changelog.outputs.changelog }}      
+
       - name: Create Release
         id: create_release
-        uses: actions/create-release@latest
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
           token: ${{ secrets.PAT }}
-          release_name: Release ${{ github.ref }}
+          name: Release ${{ github.ref }}
           body: ${{ steps.changelog.outputs.changelog }}
-          draft: false
           prerelease: false
 
